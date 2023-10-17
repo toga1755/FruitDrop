@@ -6,6 +6,7 @@ using OpenCvSharp;
 
 public class Camera1 : MonoBehaviour
 {
+    public Queue<Vector2> positionQueue = new Queue<Vector2>();
     WebCamTexture webcam;
     int width = 1280;//1280
     int height = 720;//720
@@ -16,6 +17,12 @@ public class Camera1 : MonoBehaviour
 
     public void stopcamera(){
         webcam.Stop();
+    }
+
+    // データをQueueに追加するメソッド
+    public void AddPositionToQueue(Vector2 position)
+    {
+        positionQueue.Enqueue(position);
     }
 
     // Start is called before the first frame update
@@ -47,13 +54,13 @@ public class Camera1 : MonoBehaviour
         // Mat YCrCb_maskin = mask.InRange(new Scalar(30,50,80), new Scalar(100,255,255));
 
         //黄色
-        // Mat YCrCb_maskin = mask.InRange(new Scalar(15,50,100), new Scalar(30,255,255));
+        Mat YCrCb_maskin = mask.InRange(new Scalar(15,50,100), new Scalar(30,255,255));
 
         //赤色
         // Mat YCrCb_maskin = mask.InRange(new Scalar(170,50,100), new Scalar(180,255,255)); //顔も反応する可能性アリ
 
         //黒色
-        Mat YCrCb_maskin = mask.InRange(new Scalar(0,150,0), new Scalar(180,255,30));
+        // Mat YCrCb_maskin = mask.InRange(new Scalar(0,150,0), new Scalar(180,255,30));
 
         YCrCb_maskin.MorphologyEx(MorphTypes.Open, new Mat(3,3,MatType.CV_8UC1));
         OpenCvSharp.Point[][] contours;
@@ -74,6 +81,9 @@ public class Camera1 : MonoBehaviour
                 x = rect.X + (rect.Width / 2);
                 y = rect.Y + (rect.Height / 2);
                 // Debug.Log(rect +"::"+ x + "::" + y);
+
+                Vector2 newPosition = new Vector2(x, y);
+                AddPositionToQueue(newPosition);
             }
         }
 
