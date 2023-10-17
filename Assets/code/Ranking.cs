@@ -8,7 +8,7 @@ public class Ranking : MonoBehaviour {
     string[] ranking = { "ランキング1位", "ランキング2位", "ランキング3位", "ランキング4位", "ランキング5位" };
     int[] rankingValue = new int[5];
 
-    string[] nameranking = { "ランキング1位", "ランキング2位", "ランキング3位", "ランキング4位", "ランキング5位" };
+    //string[] nameranking = { "ランキング1位", "ランキング2位", "ランキング3位", "ランキング4位", "ランキング5位" };
     string[] nameValue = new string[5];
     public TextMeshProUGUI cubeText;
 
@@ -35,7 +35,9 @@ public class Ranking : MonoBehaviour {
 
         for (int i = 0; i < rankingText.Length; i++)
         {
-            rankingText[i].text = rankingValue[i].ToString();
+            //rankingText[i].text = rankingValue[i].ToString();
+            //rankingText[i].text = $"{rankingValue[i]}. {nameValue[i]}: {rankingValue[i]}"; // 名前、ランキング、スコアを表示
+            rankingText[i].text = $"{nameValue[i]}: {rankingValue[i]}"; // 名前とスコアを表示
         }
     }
 
@@ -48,6 +50,7 @@ public class Ranking : MonoBehaviour {
         for (int i = 0; i < ranking.Length; i++)
         {
             rankingValue[i]=PlayerPrefs.GetInt(ranking[i]);
+            nameValue[i]=PlayerPrefs.GetString("名前" + ranking[i]);
         }
     }
     /// <summary>
@@ -64,13 +67,17 @@ public class Ranking : MonoBehaviour {
                     var change = rankingValue[i];
                     rankingValue[i] = _value;
                     _value = change;
+                    var nameKey = "名前" + ranking[i];
+                    nameValue[i] = username;
+                    PlayerPrefs.SetInt(ranking[i], rankingValue[i]);
+                    PlayerPrefs.SetString(nameKey,nameValue[i]);
                 }
         }
 
-        //入れ替えた値を保存
+        /*//入れ替えた値を保存
         for (int i = 0; i < ranking.Length; i++)
         {
             PlayerPrefs.SetInt(ranking[i],rankingValue[i]);
-        }
+        }*/
     }
 }
