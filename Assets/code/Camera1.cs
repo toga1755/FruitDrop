@@ -14,9 +14,18 @@ public class Camera1 : MonoBehaviour
     public float x = 0.0f;
     public float y = 0.0f;
     Texture2D outTexture;
+    public GameObject prefab;
+    private Vector3 FramePosition;
 
     public void stopcamera(){
         webcam.Stop();
+    }
+
+    void FrameIns(float x, float y, float width, float height)
+    {
+        FramePosition = new Vector3(x, y, 70f);
+        GameObject frame = Instantiate(prefab, FramePosition, Quaternion.identity);
+        frame.transform.localScale = new Vector3(width, height, 5f);
     }
 
     // データをQueueに追加するメソッド
@@ -81,6 +90,7 @@ public class Camera1 : MonoBehaviour
                 x = rect.X + (rect.Width / 2);
                 y = rect.Y + (rect.Height / 2);
                 // Debug.Log(rect +"::"+ x + "::" + y);
+                FrameIns(x, y, rect.Width, rect.Height);
 
                 Vector2 newPosition = new Vector2(x, y);
                 AddPositionToQueue(newPosition);
