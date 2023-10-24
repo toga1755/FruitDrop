@@ -7,9 +7,9 @@ public class Ranking : MonoBehaviour {
     string username;
     string[] ranking = { "ランキング1位", "ランキング2位", "ランキング3位", "ランキング4位", "ランキング5位" };
     int[] rankingValue = new int[5];
-
-    //string[] nameranking = { "ランキング1位", "ランキング2位", "ランキング3位", "ランキング4位", "ランキング5位" };
     string[] nameValue = new string[5];
+
+    string[] dotranking = { "ランキング1位", "ランキング2位", "ランキング3位", "ランキング4位", "ランキング5位" };
     public TextMeshProUGUI cubeText;
 
     [SerializeField, Header("表示させるポイント")]
@@ -27,17 +27,26 @@ public class Ranking : MonoBehaviour {
         // point = 5000;
         // username = "しょうたろう";
 
-        cubeText.text =username + "さんは\n" + point + " Cube\n" + "獲得しました";
+        cubeText.text =username + "さんは\n" + point + " Cube\n" + "獲得しました"; 
 
-        GetRanking();
-
-        SetRanking(point);
-
-        for (int i = 0; i < rankingText.Length; i++)
-        {
-            //rankingText[i].text = rankingValue[i].ToString();
-            //rankingText[i].text = $"{rankingValue[i]}. {nameValue[i]}: {rankingValue[i]}"; // 名前、ランキング、スコアを表示
-            rankingText[i].text = $"{nameValue[i]}: {rankingValue[i]}"; // 名前とスコアを表示
+        if (username != "dotcube") {
+            GetRanking();
+            SetRanking(point);
+            for (int i = 0; i < rankingText.Length; i++)
+            {
+                //rankingText[i].text = rankingValue[i].ToString();
+                //rankingText[i].text = $"{rankingValue[i]}. {nameValue[i]}: {rankingValue[i]}"; // 名前、ランキング、スコアを表示
+                rankingText[i].text = $"{nameValue[i]}: {rankingValue[i]}"; // 名前とスコアを表示
+            }
+        } else {
+            DotGetRanking();
+            DotSetRanking(point);
+            for (int i = 0; i < rankingText.Length; i++)
+            {
+                //rankingText[i].text = rankingValue[i].ToString();
+                //rankingText[i].text = $"{rankingValue[i]}. {nameValue[i]}: {rankingValue[i]}"; // 名前、ランキング、スコアを表示
+                rankingText[i].text = $"{nameValue[i]}: {rankingValue[i]}"; // 名前とスコアを表示
+            }
         }
     }
 
@@ -79,5 +88,39 @@ public class Ranking : MonoBehaviour {
         {
             PlayerPrefs.SetInt(ranking[i],rankingValue[i]);
         }*/
+    }
+
+    /// <summary>
+    /// ランキング呼び出し
+    /// </summary>
+    void DotGetRanking()
+    {
+        //ランキング呼び出し
+        for (int i = 0; i < ranking.Length; i++)
+        {
+            rankingValue[i]=PlayerPrefs.GetInt(dotranking[i]);
+            nameValue[i]=PlayerPrefs.GetString("名前" + dotranking[i]);
+        }
+    }
+    /// <summary>
+    /// ランキング書き込み
+    /// </summary>
+    void DotSetRanking(int _value)
+    {
+        //書き込み用
+        for (int i = 0; i < ranking.Length; i++)
+        {
+                //取得した値とRankingの値を比較して入れ替え
+                if (_value>rankingValue[i])
+                {
+                    var change = rankingValue[i];
+                    rankingValue[i] = _value;
+                    _value = change;
+                    var dotnameKey = "名前" + dotranking[i];
+                    nameValue[i] = username;
+                    PlayerPrefs.SetInt(dotranking[i], rankingValue[i]);
+                    PlayerPrefs.SetString(dotnameKey,nameValue[i]);
+                }
+        }
     }
 }
