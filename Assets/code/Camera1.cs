@@ -16,17 +16,21 @@ public class Camera1 : MonoBehaviour
     Texture2D outTexture;
     public GameObject prefab;
     private Vector3 FramePosition;
+    GameObject frame;
 
     public void stopcamera(){
         webcam.Stop();
     }
-
+    
+    // シーン上に赤枠を生成するメソッド
     void FrameIns(float x, float y, float width, float height)
     {
         FramePosition = new Vector3(x, y, 70f);
-        GameObject frame = Instantiate(prefab, FramePosition, Quaternion.identity);
+        frame = Instantiate(prefab, FramePosition, Quaternion.identity);
         frame.transform.localScale = new Vector3(width, height, 5f);
+        Destroy(frame, 0.1f);
     }
+    
 
     // データをQueueに追加するメソッド
     public void AddPositionToQueue(Vector2 position)
@@ -90,10 +94,10 @@ public class Camera1 : MonoBehaviour
                 x = rect.X + (rect.Width / 2);
                 y = rect.Y + (rect.Height / 2);
                 // Debug.Log(rect +"::"+ x + "::" + y);
-                FrameIns(x, y, rect.Width, rect.Height);
+                FrameIns(x, -y, rect.Width, rect.Height);
 
-                Vector2 newPosition = new Vector2(x, y);
-                AddPositionToQueue(newPosition);
+                // Vector2 newPosition = new Vector2(x, y);
+                // AddPositionToQueue(newPosition);
             }
         }
 

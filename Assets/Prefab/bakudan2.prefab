@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 944191693167688479}
   - component: {fileID: 4230475178962678970}
   - component: {fileID: 2112572551983890544}
-  - component: {fileID: 2458375705347109565}
   - component: {fileID: 4876648045188804291}
+  - component: {fileID: 898013659007964597}
+  - component: {fileID: 7717045828260908750}
   m_Layer: 0
   m_Name: bakudan2
   m_TagString: bakudan
@@ -87,18 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2458375705347109565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 455323137782981029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21d837cde12150841a259b1e2103e8a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &4876648045188804291
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -115,3 +104,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &898013659007964597
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455323137782981029}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.2523351
+  m_Center: {x: -0.000000059604645, y: 0.252335, z: -0.000000007520169}
+--- !u!114 &7717045828260908750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455323137782981029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9949ecb97a5574b40817adc6069b3016, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

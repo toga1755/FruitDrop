@@ -50,7 +50,7 @@ public class RandomCube : MonoBehaviour
     
                     // プレハブを生成
                     GameObject cube = Instantiate(dotcube, pos, Quaternion.Euler(-30, -240, 30));
-                    cube.GetComponent<Destroy1>().Setcamera(camera1);
+                    // cube.GetComponent<Destroy1>().Setcamera(camera1);
                 }
             }else if(number == 1 || number == 2)
             {
@@ -58,8 +58,8 @@ public class RandomCube : MonoBehaviour
                 Vector3 pos = new Vector3(640, 100.0f, 70.0f);
                 // プレハブを生成
                 GameObject cube = Instantiate(blue, pos, Quaternion.identity);
-                cube.GetComponent<Destroy2>().Setcamera(camera1);
-                cube.GetComponent<Destroy2>().Setline(Line);
+                // cube.GetComponent<Destroy2>().Setcamera(camera1);
+                cube.GetComponent<Destroy3>().Setline(Line);
             }else if(number >= 3 && number <= 6)
             {
                 bluec = GameObject.FindGameObjectsWithTag("blue").Length;
@@ -70,7 +70,7 @@ public class RandomCube : MonoBehaviour
     
                     // プレハブを生成
                     GameObject cube = Instantiate(bakudan, pos, Quaternion.Euler(40, 0, 0));
-                    cube.GetComponent<Destroy1>().Setcamera(camera1);
+                    // cube.GetComponent<Destroy1>().Setcamera(camera1);
                 }
             }else if(number >= 7 && number <= 13)
             {
@@ -82,7 +82,7 @@ public class RandomCube : MonoBehaviour
         
                     // プレハブを生成
                     GameObject cube = Instantiate(apple, pos,Quaternion.Euler(50, 0, 0));
-                    cube.GetComponent<Destroy1>().Setcamera(camera1);
+                    // cube.GetComponent<Destroy1>().Setcamera(camera1);
                 }
             }else if(number >= 14 && number <= 20)
             {
@@ -94,7 +94,7 @@ public class RandomCube : MonoBehaviour
     
                     // プレハブを生成
                     GameObject cube = Instantiate(ogange, pos, Quaternion.Euler(55, 0, 0));
-                    cube.GetComponent<Destroy1>().Setcamera(camera1);
+                    // cube.GetComponent<Destroy1>().Setcamera(camera1);
                 }
             }
         }

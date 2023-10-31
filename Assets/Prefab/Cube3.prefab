@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4402088185752588109}
   - component: {fileID: 4402088185752588106}
   - component: {fileID: 4402088185752588107}
-  - component: {fileID: -4828580123224584492}
+  - component: {fileID: 3635019368721009431}
   m_Layer: 8
   m_Name: Cube3
   m_TagString: blue
@@ -94,7 +94,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4402088185752588104}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -115,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-4828580123224584492
+--- !u!114 &3635019368721009431
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,6 +124,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 4402088185752588104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7f02ece28a05c74092d862b9827d83e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9949ecb97a5574b40817adc6069b3016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
