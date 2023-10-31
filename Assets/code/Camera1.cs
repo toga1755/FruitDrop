@@ -29,7 +29,21 @@ public class Camera1 : MonoBehaviour
     void Start()
     {
         WebCamDevice[] devices = WebCamTexture.devices;
-        webcam = new WebCamTexture(devices[0].name, this.width, this.height, this.fps);
+
+        if (devices.Length > 1)
+        {
+            webcam = new WebCamTexture(devices[1].name, this.width, this.height, this.fps);
+        }
+        else if (devices.Length > 0)
+        {
+            webcam = new WebCamTexture(devices[0].name, this.width, this.height, this.fps);
+        }
+        else
+        {
+            Debug.LogError("No webcam devices found.");
+            return;
+        }
+
         // GetComponent<Renderer>().material.mainTexture = webcam;
         webcam.Play();
         outTexture = new Texture2D(this.width, this.height, TextureFormat.ARGB32, false);
@@ -51,16 +65,16 @@ public class Camera1 : MonoBehaviour
         // Mat YCrCb_maskin = mask.InRange(new Scalar(100,50,100), new Scalar(120,255,255));
 
         //緑色
-        // Mat YCrCb_maskin = mask.InRange(new Scalar(30,50,80), new Scalar(100,255,255));
+        //Mat YCrCb_maskin = mask.InRange(new Scalar(30,50,80), new Scalar(100,255,255));
 
         //黄色
-        Mat YCrCb_maskin = mask.InRange(new Scalar(15,50,100), new Scalar(30,255,255));
+        //Mat YCrCb_maskin = mask.InRange(new Scalar(15,50,100), new Scalar(30,255,255));
 
         //赤色
-        // Mat YCrCb_maskin = mask.InRange(new Scalar(170,50,100), new Scalar(180,255,255)); //顔も反応する可能性アリ
+        //Mat YCrCb_maskin = mask.InRange(new Scalar(170,50,100), new Scalar(180,255,255)); //顔も反応する可能性アリ
 
         //黒色
-        // Mat YCrCb_maskin = mask.InRange(new Scalar(0,150,0), new Scalar(180,255,30));
+        Mat YCrCb_maskin = mask.InRange(new Scalar(0,150,0), new Scalar(180,255,30));
 
         YCrCb_maskin.MorphologyEx(MorphTypes.Open, new Mat(3,3,MatType.CV_8UC1));
         OpenCvSharp.Point[][] contours;
