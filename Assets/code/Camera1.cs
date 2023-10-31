@@ -27,7 +27,7 @@ public class Camera1 : MonoBehaviour
     {
         FramePosition = new Vector3(x, y, 70f);
         frame = Instantiate(prefab, FramePosition, Quaternion.identity);
-        frame.transform.localScale = new Vector3(width, height, 5f);
+        frame.transform.localScale = new Vector3(width/100, height/100, 5f);
         Destroy(frame, 0.1f);
     }
     
